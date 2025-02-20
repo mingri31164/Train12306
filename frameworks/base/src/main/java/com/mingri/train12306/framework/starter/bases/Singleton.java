@@ -13,7 +13,8 @@ import java.util.function.Supplier;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public final class Singleton {
 
-    private static final ConcurrentHashMap<String, Object> SINGLE_OBJECT_POOL = new ConcurrentHashMap();
+    private static final ConcurrentHashMap<String, Object> SINGLE_OBJECT_POOL =
+            new ConcurrentHashMap();
 
     public static <T> T get(String key) {
         Object result = SINGLE_OBJECT_POOL.get(key);
