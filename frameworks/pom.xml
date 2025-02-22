@@ -20,6 +20,7 @@
         <module>common</module>
         <module>database</module>
         <module>distributedid</module>
+        <module>log</module>
     </modules>
 
 </project>
