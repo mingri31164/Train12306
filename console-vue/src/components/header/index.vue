@@ -2,7 +2,7 @@
   <Header :class="{ isLogin }">
     <div class="header-wrapper">
       <div>
-        <div class="logo">拿个offer-12306铁路购票@马丁</div>
+        <div class="logo">train12306铁路购票</div>
       </div>
       <div>
         <ul class="nav-list-wrapper">

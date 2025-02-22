@@ -37,6 +37,7 @@ public class EagerThreadPoolExecutor extends ThreadPoolExecutor {
         } catch (RejectedExecutionException ex) {
             TaskQueue taskQueue = (TaskQueue) super.getQueue();
             try {
+                // 立即尝试将任务放入队列，而不会阻塞等待队列有空闲空间。
                 if (!taskQueue.retryOffer(command, 0, TimeUnit.MILLISECONDS)) {
                     submittedTaskCount.decrementAndGet();
                     throw new RejectedExecutionException("Queue capacity is full.", ex);
