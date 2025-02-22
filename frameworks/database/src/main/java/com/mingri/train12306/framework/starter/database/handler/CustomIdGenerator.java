@@ -1,6 +1,7 @@
 package com.mingri.train12306.framework.starter.database.handler;
 
 import com.baomidou.mybatisplus.core.incrementer.IdentifierGenerator;
+import com.mingri.train12306.framework.starter.distributedid.toolkit.SnowflakeIdUtil;
 
 /**
  * 自定义雪花算法生成器
