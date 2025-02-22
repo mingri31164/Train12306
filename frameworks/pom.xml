@@ -21,6 +21,7 @@
         <module>database</module>
         <module>distributedid</module>
         <module>log</module>
+        <module>web</module>
     </modules>
 
 </project>
