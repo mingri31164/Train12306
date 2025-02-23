@@ -2,7 +2,7 @@ package com.mingri.train12306.framework.starter.distributedid.config;
 
 import com.mingri.train12306.framework.starter.bases.ApplicationContextHolder;
 import com.mingri.train12306.framework.starter.distributedid.core.snowflake.LocalRedisWorkIdChoose;
-import com.mingri.train12306.framework.starter.distributedid.core.snowflake.RandomWorkIdChoose;
+import com.mingri.train12306.framework.starter.distributedid.core.snowflake. RandomWorkIdChoose;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;

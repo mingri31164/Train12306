@@ -27,6 +27,7 @@ public class ILogPrintAspect {
 
     /**
      * 打印类或方法上的 {@link ILog}
+     * @within 匹配带有指定注解的类中的所有方法
      */
     @Around("@within(com.mingri.train12306.framework.starter.log.annotation.ILog) || @annotation(com.mingri.train12306.framework.starter.log.annotation.ILog)")
     public Object printMLog(ProceedingJoinPoint joinPoint) throws Throwable {

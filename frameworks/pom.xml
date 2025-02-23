@@ -23,6 +23,7 @@
         <module>log</module>
         <module>web</module>
         <module>cache</module>
+        <module>idempotent</module>
     </modules>
 
 </project>

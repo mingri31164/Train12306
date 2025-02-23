@@ -11,4 +11,5 @@ public interface IErrorCode {
      * 错误信息
      */
     String message();
+
 }

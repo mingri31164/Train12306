@@ -12,7 +12,7 @@ import org.springframework.beans.factory.annotation.Value;
 public abstract class AbstractWorkIdChooseTemplate {
 
     /**
-     * 是否使用 {@link SystemClock} 获取当前时间戳
+     * 是否使用 (默认为false){@link SystemClock} 获取当前时间戳
      */
     @Value("${framework.distributed.id.snowflake.is-use-system-clock:false}")
     private boolean isUseSystemClock;
