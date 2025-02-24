@@ -19,16 +19,21 @@ public final class IdempotentAspect {
      */
     @Around("@annotation(com.mingri.train12306.framework.starter.idempotent.annotation.Idempotent)")
     public Object idempotentHandler(ProceedingJoinPoint joinPoint) throws Throwable {
+        // 获取到方法上的幂等注解实际数据
         Idempotent idempotent = getIdempotent(joinPoint);
+        // 通过幂等场景以及幂等类型，获取幂等执行处理器
         IdempotentExecuteHandler instance = IdempotentExecuteHandlerFactory.getInstance(idempotent.scene(), idempotent.type());
         Object resultObj;
         try {
+            // 执行幂等处理逻辑
             instance.execute(joinPoint, idempotent);
+            // 如果幂等处理逻辑没有抛异常，处理中间业务
             resultObj = joinPoint.proceed();
+            // 处理幂等后置逻辑，比如释放资源或者锁之类的
             instance.postProcessing();
         } catch (RepeatConsumptionException ex) {
             /**
-             * 触发幂等逻辑时可能有两种情况：
+             * 该异常为消息队列防重复提交独有，触发幂等逻辑时可能有两种情况：
              *    * 1. 消息还在处理，但是不确定是否执行成功，那么需要返回错误，方便 RocketMQ 再次通过重试队列投递
              *    * 2. 消息处理成功了，该消息直接返回成功即可
              */
@@ -41,6 +46,7 @@ public final class IdempotentAspect {
             instance.exceptionProcessing();
             throw ex;
         } finally {
+            // 清理幂等容器上下文
             IdempotentContext.clean();
         }
         return resultObj;

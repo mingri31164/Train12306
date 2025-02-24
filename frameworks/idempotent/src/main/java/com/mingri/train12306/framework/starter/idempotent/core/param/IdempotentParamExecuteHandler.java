@@ -69,6 +69,7 @@ public final class IdempotentParamExecuteHandler extends AbstractIdempotentExecu
 
     @Override
     public void postProcessing() {
+        // 分布式解锁
         RLock lock = null;
         try {
             lock = (RLock) IdempotentContext.getKey(LOCK);

@@ -12,6 +12,7 @@
     <modules>
         <module>dependencies</module>
         <module>frameworks</module>
+        <module>services</module>
     </modules>
 
     <properties>
