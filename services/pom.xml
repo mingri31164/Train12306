@@ -10,6 +10,11 @@
     </parent>
 
     <artifactId>services</artifactId>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>gateway-service</module>
+    </modules>
 
     <dependencies>
         <!--监控和管理应用-->
