@@ -44,7 +44,8 @@ public final class IdempotentSpELByMQExecuteHandler extends AbstractIdempotentEx
     @Override
     public void handler(IdempotentParamWrapper wrapper) {
         String uniqueKey = wrapper.getIdempotent().uniqueKeyPrefix() + wrapper.getLockKey();
-        String absentAndGet = this.setIfAbsentAndGet(uniqueKey, IdempotentMQConsumeStatusEnum.CONSUMING.getCode(), TIMEOUT, TimeUnit.SECONDS);
+        String absentAndGet = this.setIfAbsentAndGet(uniqueKey,
+                IdempotentMQConsumeStatusEnum.CONSUMING.getCode(), TIMEOUT, TimeUnit.SECONDS);
 
         if (Objects.nonNull(absentAndGet)) {
             boolean error = IdempotentMQConsumeStatusEnum.isError(absentAndGet);

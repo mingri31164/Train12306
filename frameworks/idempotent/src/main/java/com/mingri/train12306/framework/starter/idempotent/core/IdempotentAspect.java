@@ -53,8 +53,12 @@ public final class IdempotentAspect {
     }
 
     public static Idempotent getIdempotent(ProceedingJoinPoint joinPoint) throws NoSuchMethodException {
+        // 获取当前执行的方法的签名
         MethodSignature methodSignature = (MethodSignature) joinPoint.getSignature();
-        Method targetMethod = joinPoint.getTarget().getClass().getDeclaredMethod(methodSignature.getName(), methodSignature.getMethod().getParameterTypes());
+        // 获取方法名称和参数类型
+        Method targetMethod = joinPoint.getTarget().getClass().getDeclaredMethod(methodSignature.getName(),
+                methodSignature.getMethod().getParameterTypes());
+        // 获取目标方法上的 @Idempotent 注解
         return targetMethod.getAnnotation(Idempotent.class);
     }
 }
