@@ -36,6 +36,12 @@
 
         <dependency>
             <groupId>com.mingri.train12306</groupId>
+            <artifactId>train12306-common-spring-boot-starter</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.mingri.train12306</groupId>
             <artifactId>train12306-user-spring-boot-starter</artifactId>
             <version>${project.version}</version>
         </dependency>
