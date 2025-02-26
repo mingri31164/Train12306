@@ -46,7 +46,7 @@ public class PassengerController {
      */
     @Idempotent(
             uniqueKeyPrefix = "train12306-user:lock_passenger-alter:",
-            key = "T(org.opengoofy.train12306.frameworks.starter.user.core.UserContext).getUsername()",
+            key = "T(com.mingri.train12306.frameworks.starter.user.core.UserContext).getUsername()",
             type = IdempotentTypeEnum.SPEL,
             scene = IdempotentSceneEnum.RESTAPI,
             message = "正在新增乘车人，请稍后再试..."
@@ -62,7 +62,7 @@ public class PassengerController {
      */
     @Idempotent(
             uniqueKeyPrefix = "train12306-user:lock_passenger-alter:",
-            key = "T(org.opengoofy.train12306.frameworks.starter.user.core.UserContext).getUsername()",
+            key = "T(com.mingri.train12306.frameworks.starter.user.core.UserContext).getUsername()",
             type = IdempotentTypeEnum.SPEL,
             scene = IdempotentSceneEnum.RESTAPI,
             message = "正在修改乘车人，请稍后再试..."
