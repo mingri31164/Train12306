@@ -1,8 +1,12 @@
 package com.mingri.train12306.biz.userservice.controller;
 
+import com.mingri.train12306.biz.userservice.dto.req.UserDeletionReqDTO;
+import com.mingri.train12306.biz.userservice.dto.req.UserRegisterReqDTO;
 import com.mingri.train12306.biz.userservice.dto.req.UserUpdateReqDTO;
 import com.mingri.train12306.biz.userservice.dto.resp.UserQueryActualRespDTO;
 import com.mingri.train12306.biz.userservice.dto.resp.UserQueryRespDTO;
+import com.mingri.train12306.biz.userservice.dto.resp.UserRegisterRespDTO;
+import com.mingri.train12306.biz.userservice.service.UserLoginService;
 import com.mingri.train12306.biz.userservice.service.UserService;
 import com.mingri.train12306.framework.starter.convention.result.Result;
 import com.mingri.train12306.framework.starter.web.Results;
@@ -19,6 +23,7 @@ import org.springframework.web.bind.annotation.*;
 public class UserInfoController {
 
     private final UserService userService;
+    private final UserLoginService userLoginService;
 
     /**
      * 根据用户名查询用户信息
@@ -45,4 +50,24 @@ public class UserInfoController {
         userService.update(requestParam);
         return Results.success();
     }
+
+
+    /**
+     * 注册用户
+     */
+    @PostMapping("/api/user-service/register")
+    public Result<UserRegisterRespDTO> register(@RequestBody @Valid UserRegisterReqDTO requestParam) {
+        return Results.success(userLoginService.register(requestParam));
+    }
+
+
+    /**
+     * 注销用户
+     */
+    @PostMapping("/api/user-service/deletion")
+    public Result<Void> deletion(@RequestBody @Valid UserDeletionReqDTO requestParam) {
+        userLoginService.deletion(requestParam);
+        return Results.success();
+    }
+
 }
