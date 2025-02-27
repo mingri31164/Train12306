@@ -158,6 +158,12 @@
             <artifactId>activation</artifactId>
             <version>1.1.1</version>
         </dependency>
+        <dependency>
+            <groupId>net.hydromatic</groupId>
+            <artifactId>aggdesigner-algorithm</artifactId>
+            <version>6.0</version>
+            <scope>compile</scope>
+        </dependency>
         <!-- NoClassDefFoundError: javax/xml/bind/JAXBException end -->
     </dependencies>
 
