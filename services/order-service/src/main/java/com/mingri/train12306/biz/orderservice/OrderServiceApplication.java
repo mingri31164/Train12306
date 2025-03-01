@@ -11,6 +11,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
  */
 @SpringBootApplication
 @MapperScan("com.mingri.train12306.biz.orderservice.dao.mapper")
+@EnableFeignClients("com.mingri.train12306.biz.orderservice.remote")
 @EnableCrane4j(enumPackages = "com.mingri.train12306.biz.orderservice.common.enums")
 public class OrderServiceApplication {
 
