@@ -2,8 +2,8 @@ package com.mingri.train12306.biz.ticketservice.remote;
 
 import com.mingri.train12306.biz.ticketservice.dto.req.CancelTicketOrderReqDTO;
 import com.mingri.train12306.biz.ticketservice.dto.req.TicketOrderItemQueryReqDTO;
-import com.mingri.train12306.biz.ticketservice.dto.resp.TicketOrderDetailRespDTO;
 import com.mingri.train12306.biz.ticketservice.remote.dto.TicketOrderCreateRemoteReqDTO;
+import com.mingri.train12306.biz.ticketservice.remote.dto.TicketOrderDetailRespDTO;
 import com.mingri.train12306.biz.ticketservice.remote.dto.TicketOrderPassengerDetailRespDTO;
 import com.mingri.train12306.framework.starter.convention.result.Result;
 import org.springframework.cloud.openfeign.FeignClient;
@@ -18,8 +18,8 @@ import java.util.List;
 /**
  * 车票订单远程服务调用
  */
-@FeignClient(value = "train12306-order${unique-name:}-service", url = "${remote.order.url}")
-public interface OrderRemoteService {
+@FeignClient(value = "train12306-order${unique-name:}-service", url = "${aggregation.remote-url:}")
+public interface TicketOrderRemoteService {
 
     /**
      * 跟据订单号查询车票订单
@@ -53,7 +53,7 @@ public interface OrderRemoteService {
      * @return 关闭订单返回结果
      */
     @PostMapping("/api/order-service/order/ticket/close")
-    Result<Boolean> closeTicketOrder(@RequestBody CancelTicketOrderReqDTO requestParam);
+    Result<Boolean> closeTickOrder(@RequestBody CancelTicketOrderReqDTO requestParam);
 
     /**
      * 车票订单取消
@@ -62,5 +62,5 @@ public interface OrderRemoteService {
      * @return 订单取消返回结果
      */
     @PostMapping("/api/order-service/order/ticket/cancel")
-    Result<Boolean> cancelTicketOrder(@RequestBody CancelTicketOrderReqDTO requestParam);
+    Result<Void> cancelTicketOrder(@RequestBody CancelTicketOrderReqDTO requestParam);
 }

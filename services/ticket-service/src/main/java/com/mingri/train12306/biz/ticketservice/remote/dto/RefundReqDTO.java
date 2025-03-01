@@ -1,7 +1,7 @@
 package com.mingri.train12306.biz.ticketservice.remote.dto;
 
-import com.mingri.train12306.biz.ticketservice.common.enums.RefundTypeEnum;
 import lombok.Data;
+import com.mingri.train12306.biz.ticketservice.common.enums.RefundTypeEnum;
 
 import java.util.List;
 

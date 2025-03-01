@@ -104,4 +104,20 @@ public final class RedisKeyConstant {
      * 令牌获取失败分布式锁 Key
      */
     public static final String LOCK_TOKEN_BUCKET_ISNULL = "train12306-ticket-service:lock:token-bucket-isnull:%s";
+
+    /**
+     * 获取列车车厢数量集合分布式锁 Key
+     */
+    public static final String LOCK_QUERY_CARRIAGE_NUMBER_LIST = "index12306-ticket-service:lock:query_carriage_number_list_%s";
+
+    /**
+     * 列车车厢查询，Key Prefix + 列车ID
+     */
+    public static final String TRAIN_CARRIAGE = "index12306-ticket-service:train_carriage:";
+
+    /**
+     * 用户购票分布式锁 Key v2
+     */
+    public static final String LOCK_PURCHASE_TICKETS_V2 = "${unique-name:}index12306-ticket-service:lock:purchase_tickets_%s_%d";
+
 }
