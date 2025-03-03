@@ -1,2 +1,1 @@
-# RocketMQ 2.2.3 version does not adapt to SpringBoot3
 org.apache.rocketmq.spring.autoconfigure.RocketMQAutoConfiguration

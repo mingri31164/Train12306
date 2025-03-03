@@ -292,31 +292,7 @@ public class TicketServiceImpl extends ServiceImpl<TicketMapper, TicketDO> imple
                 .build();
     }
 
-    @ILog
-    @Idempotent(
-            uniqueKeyPrefix = "train12306-ticket:lock_purchase-tickets:",
-            key = "T(com.mingri.train12306.framework.starter.bases.ApplicationContextHolder).getBean('environment').getProperty('unique-name', '')"
-                    + "+'_'+"
-                    + "T(com.mingri.train12306.frameworks.starter.user.core.UserContext).getUsername()",
-            message = "正在执行下单流程，请稍后...",
-            scene = IdempotentSceneEnum.RESTAPI,
-            type = IdempotentTypeEnum.SPEL
-    )
-    @Override
-    public TicketPurchaseRespDTO purchaseTicketsV1(PurchaseTicketReqDTO requestParam) {
-        // 责任链模式，验证 1：参数必填 2：参数正确性 3：乘客是否已买当前车次等...
-        purchaseTicketAbstractChainContext.handler(TicketChainMarkEnum.TRAIN_PURCHASE_TICKET_FILTER.name(), requestParam);
-        // v1 版本购票存在 4 个较为严重的问题，v2 版本相比较 v1 版本更具有业务特点以及性能，整体提升较大
-        // 写了详细的 v2 版本购票升级指南，详情查看：https://nageoffer.com/12306/question
-        String lockKey = environment.resolvePlaceholders(String.format(LOCK_PURCHASE_TICKETS, requestParam.getTrainId()));
-        RLock lock = redissonClient.getLock(lockKey);
-        lock.lock();
-        try {
-            return ticketService.executePurchaseTickets(requestParam);
-        } finally {
-            lock.unlock();
-        }
-    }
+
 
     private final Cache<String, ReentrantLock> localLockMap = Caffeine.newBuilder()
             .expireAfterWrite(1, TimeUnit.DAYS)
@@ -328,16 +304,16 @@ public class TicketServiceImpl extends ServiceImpl<TicketMapper, TicketDO> imple
 
     @ILog
     @Idempotent(
-            uniqueKeyPrefix = "train12306-ticket:lock_purchase-tickets:",
+            uniqueKeyPrefix = "index12306-ticket:lock_purchase-tickets:",
             key = "T(com.mingri.train12306.framework.starter.bases.ApplicationContextHolder).getBean('environment').getProperty('unique-name', '')"
                     + "+'_'+"
-                    + "T(com.mingri.train12306.frameworks.starter.user.core.UserContext).getUsername()",
+                    + "T(com.mingri.train12306.framework.starter.user.core.UserContext).getUsername()",
             message = "正在执行下单流程，请稍后...",
             scene = IdempotentSceneEnum.RESTAPI,
             type = IdempotentTypeEnum.SPEL
     )
     @Override
-    public TicketPurchaseRespDTO purchaseTicketsV2(PurchaseTicketReqDTO requestParam) {
+    public TicketPurchaseRespDTO purchaseTickets(PurchaseTicketReqDTO requestParam) {
         // 责任链模式，验证 1：参数必填 2：参数正确性 3：乘客是否已买当前车次等...
         purchaseTicketAbstractChainContext.handler(TicketChainMarkEnum.TRAIN_PURCHASE_TICKET_FILTER.name(), requestParam);
         // 为什么需要令牌限流？余票缓存限流不可以么？详情查看：https://nageoffer.com/12306/question

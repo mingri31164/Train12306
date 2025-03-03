@@ -16,11 +16,11 @@ import java.util.Date;
 @Slf4j
 public final class JWTUtil {
 
-    static {
-        KEY = System.getenv("JWT_KEY");
-    }
+//    static {
+//        KEY = System.getenv("JWT_KEY");
+//    }
 
-    public static final String KEY;
+    public static final String SECRET = "SecretKey039245678901232039487623456783092349288901402967890140939827";
 
     /**
      * 解析用户 Token
@@ -31,7 +31,7 @@ public final class JWTUtil {
     public static UserInfoDTO parseJwtToken(String jwtToken) {
         if (StringUtils.hasText(jwtToken)) {
             try {
-                Claims claims = Jwts.parser().setSigningKey(KEY).parseClaimsJws(jwtToken).getBody();
+                Claims claims = Jwts.parser().setSigningKey(SECRET).parseClaimsJws(jwtToken).getBody();
                 Date expiration = claims.getExpiration();
                 if (expiration.after(new Date())) {
                     String subject = claims.getSubject();

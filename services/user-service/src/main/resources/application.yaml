@@ -20,7 +20,7 @@ spring:
       username: nacos
     sentinel:
       transport:
-        dashboard: localhost:8686
+        dashboard: 117.72.48.167:8858
         port: 8719
 mybatis-plus:
   global-config:
@@ -49,3 +49,4 @@ management:
   metrics:
     tags:
       application: ${spring.application.name}
+

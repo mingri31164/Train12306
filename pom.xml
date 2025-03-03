@@ -1,30 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.mingri.train12306</groupId>
-    <artifactId>train12306-all</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <artifactId>all</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
+
+    <properties>
+        <java.version>17</java.version>
+        <spotless-maven-plugin.version>2.22.1</spotless-maven-plugin.version>
+        <skip.checkstyle.check>true</skip.checkstyle.check>
+        <maven-common-plugin.version>3.1.0</maven-common-plugin.version>
+        <maven.compiler.target>17</maven.compiler.target>
+        <maven.compiler.source>17</maven.compiler.source>
+        <lombok.version>1.18.30</lombok.version>
+    </properties>
 
     <modules>
         <module>dependencies</module>
         <module>frameworks</module>
         <module>services</module>
     </modules>
-
-    <properties>
-        <java.version>21</java.version>
-        <maven.compiler.source>21</maven.compiler.source>
-        <maven.compiler.target>21</maven.compiler.target>
-        <spotless-maven-plugin.version>2.22.1</spotless-maven-plugin.version>
-        <skip.checkstyle.check>true</skip.checkstyle.check>
-        <maven-common-plugin.version>3.1.0</maven-common-plugin.version>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <lombok.version>1.18.30</lombok.version>
-    </properties>
 
     <dependencies>
         <dependency>
@@ -44,7 +42,7 @@
             <dependency>
                 <groupId>com.mingri.train12306</groupId>
                 <artifactId>dependencies</artifactId>
-                <version>1.0-SNAPSHOT</version>
+                <version>${project.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -96,5 +94,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>

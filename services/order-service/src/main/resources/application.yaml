@@ -7,21 +7,21 @@ spring:
   datasource:
     driver-class-name: org.apache.shardingsphere.driver.ShardingSphereDriver
     url: jdbc:shardingsphere:classpath:shardingsphere-config.yaml
-  cloud:
-    nacos:
-      discovery:
-        server-addr: 127.0.0.1:8848
-      password: nacos
-      username: nacos
-    sentinel:
-      transport:
-        dashboard: localhost:8686
-        port: 8719
-  data:
-    redis:
-      host: 127.0.0.1
-      port: 6379
-      password: 123456
+#  cloud:
+#    nacos:
+#      discovery:
+#        server-addr: 127.0.0.1:8848
+#      password: nacos
+#      username: nacos
+#    sentinel:
+#      transport:
+#        dashboard: localhost:8686
+#        port: 8719
+#  data:
+#    redis:
+#      host: 127.0.0.1
+#      port: 6379
+#      password: 123456
 
 mybatis-plus:
   global-config:
@@ -42,7 +42,7 @@ framework:
       value-time-unit: days
 
 rocketmq:
-  name-server: 127.0.0.1:9876
+  #  name-server: 127.0.0.1:9876
   producer:
     group: train12306_order${unique-name:}-service_common-message-execute_pg
     send-message-timeout: 2000
@@ -57,3 +57,9 @@ management:
   metrics:
     tags:
       application: ${spring.application.name}
+
+remote:
+  user:
+    url: 127.0.0.1:9001
+  ticket:
+    url: 127.0.0.1:9002

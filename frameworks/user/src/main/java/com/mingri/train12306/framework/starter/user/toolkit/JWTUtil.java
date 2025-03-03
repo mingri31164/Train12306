@@ -19,13 +19,13 @@ import static com.mingri.train12306.framework.starter.bases.constant.UserConstan
 @Slf4j
 public final class JWTUtil {
 
-    static {
-        KEY = System.getenv("JWT_KEY");
-    }
+//    static {
+//        KEY = System.getenv("JWT_KEY");
+//    }
+    public static final String SECRET = "SecretKey039245678901232039487623456783092349288901402967890140939827";
 
     private static final long EXPIRATION = 86400L; // 24h有效期
     public static final String ISS = "train12306";
-    public static final String KEY;
 
     /**
      * 生成用户 Token
@@ -34,12 +34,13 @@ public final class JWTUtil {
      * @return 用户访问 Token
      */
     public static String generateAccessToken(UserInfoDTO userInfo) {
+        log.info("生成用户Token：{}", userInfo);
         Map<String, Object> customerUserMap = new HashMap<>();
         customerUserMap.put(USER_ID_KEY, userInfo.getUserId());
         customerUserMap.put(USER_NAME_KEY, userInfo.getUsername());
         customerUserMap.put(REAL_NAME_KEY, userInfo.getRealName());
         String jwtToken = Jwts.builder()
-                .signWith(SignatureAlgorithm.HS512, KEY)
+                .signWith(SignatureAlgorithm.HS512, SECRET)
                 .setIssuedAt(new Date())
                 .setIssuer(ISS)
                 .setSubject(JSON.toJSONString(customerUserMap))

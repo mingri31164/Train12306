@@ -3,10 +3,11 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+
     <parent>
+        <artifactId>all</artifactId>
         <groupId>com.mingri.train12306</groupId>
-        <artifactId>train12306-all</artifactId>
-        <version>1.0-SNAPSHOT</version>
+        <version>0.0.1-SNAPSHOT</version>
     </parent>
 
     <artifactId>frameworks</artifactId>
@@ -18,12 +19,13 @@
         <module>user</module>
         <module>designpattern</module>
         <module>common</module>
-        <module>database</module>
         <module>distributedid</module>
+        <module>database</module>
         <module>log</module>
         <module>web</module>
         <module>cache</module>
         <module>idempotent</module>
     </modules>
+
 
 </project>
