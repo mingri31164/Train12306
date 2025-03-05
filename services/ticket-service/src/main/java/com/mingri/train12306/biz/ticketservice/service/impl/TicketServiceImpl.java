@@ -304,7 +304,7 @@ public class TicketServiceImpl extends ServiceImpl<TicketMapper, TicketDO> imple
 
     @ILog
     @Idempotent(
-            uniqueKeyPrefix = "index12306-ticket:lock_purchase-tickets:",
+            uniqueKeyPrefix = "train12306-ticket:lock_purchase-tickets:",
             key = "T(com.mingri.train12306.framework.starter.bases.ApplicationContextHolder).getBean('environment').getProperty('unique-name', '')"
                     + "+'_'+"
                     + "T(com.mingri.train12306.framework.starter.user.core.UserContext).getUsername()",
