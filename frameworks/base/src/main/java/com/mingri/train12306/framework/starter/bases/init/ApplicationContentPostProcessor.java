@@ -34,6 +34,7 @@ public class ApplicationContentPostProcessor implements ApplicationListener<Appl
              **/
             return;
         }
+
         log.info("Publishing ApplicationInitializingEvent...");
         applicationContext.publishEvent(new ApplicationInitializingEvent(this));
     }

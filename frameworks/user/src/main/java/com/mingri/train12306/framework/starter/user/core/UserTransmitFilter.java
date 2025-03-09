@@ -40,6 +40,7 @@ public class UserTransmitFilter implements Filter {
         try {
             filterChain.doFilter(servletRequest, servletResponse);
         } finally {
+            //防止SpringMVC复用线程，防止用户拿到其他用户的信息，同时也可以避免OOM
             UserContext.removeUser();
         }
     }

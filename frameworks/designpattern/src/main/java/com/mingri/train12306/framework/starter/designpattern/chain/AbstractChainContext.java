@@ -27,22 +27,27 @@ public final class AbstractChainContext<T> implements ApplicationListener<Applic
             throw new RuntimeException(String.format("[%s] Chain of Responsibility ID is undefined.", mark));
         }
         abstractChainHandlers.forEach(each -> each.handler(requestParam));
+
+
     }
 
     @Override
     public void onApplicationEvent(ApplicationInitializingEvent event) {
         Map<String, AbstractChainHandler> chainFilterMap = ApplicationContextHolder
                 .getBeansOfType(AbstractChainHandler.class);
+        Map<String, List<AbstractChainHandler>> groupedHandlers = new HashMap<>();
         chainFilterMap.forEach((beanName, bean) -> {
-            List<AbstractChainHandler> abstractChainHandlers = abstractChainHandlerContainer.get(bean.mark());
-            if (CollectionUtils.isEmpty(abstractChainHandlers)) {
-                abstractChainHandlers = new ArrayList();
-            }
-            abstractChainHandlers.add(bean);
-            List<AbstractChainHandler> actualAbstractChainHandlers = abstractChainHandlers.stream()
-                    .sorted(Comparator.comparing(Ordered::getOrder))
+            String mark = bean.mark();
+            groupedHandlers.computeIfAbsent(mark, k -> new ArrayList<>()).add(bean);
+        });
+
+        groupedHandlers.forEach((mark, handlers) -> {
+            List<AbstractChainHandler> sortedHandlers = handlers.stream()
+                    .sorted(Comparator.comparingInt(Ordered::getOrder))
                     .collect(Collectors.toList());
-            abstractChainHandlerContainer.put(bean.mark(), actualAbstractChainHandlers);
+            abstractChainHandlerContainer.put(mark, sortedHandlers);
         });
     }
+
+
 }

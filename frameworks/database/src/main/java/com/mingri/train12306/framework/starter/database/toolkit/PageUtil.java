@@ -13,6 +13,7 @@ import java.util.stream.Collectors;
 
 /**
  * 分页工具类
+ * MyBatisPlus 分页和自定义分页对象之间的转换工具类
  */
 public class PageUtil {
 
