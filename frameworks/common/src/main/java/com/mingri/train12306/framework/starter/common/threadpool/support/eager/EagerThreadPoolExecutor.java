@@ -1,5 +1,6 @@
 package com.mingri.train12306.framework.starter.common.threadpool.support.eager;
 
+import java.lang.reflect.Proxy;
 import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -13,15 +14,45 @@ public class EagerThreadPoolExecutor extends ThreadPoolExecutor {
                                    long keepAliveTime,
                                    TimeUnit unit,
                                    TaskQueue<Runnable> workQueue,
-                                   ThreadFactory threadFactory,
                                    RejectedExecutionHandler handler) {
-        super(corePoolSize, maximumPoolSize, keepAliveTime, unit, workQueue, threadFactory, handler);
+        super(corePoolSize, maximumPoolSize, keepAliveTime, unit, workQueue, handler);
+
+        //内部创建创建代理拒绝策略类
+        RejectedExecutionHandler rejectedExecutionHandler = (RejectedExecutionHandler) Proxy.newProxyInstance(
+                handler.getClass().getClassLoader(),
+                handler.getClass().getInterfaces(),
+                new RejectedExecutionProxyInvocationHandler(handler, this)
+        );
+
+        setRejectedExecutionHandler(rejectedExecutionHandler);
     }
 
     private final AtomicInteger submittedTaskCount = new AtomicInteger(0);
 
+    /**
+     * 拒绝策略次数统计
+     */
+    private final AtomicInteger rejectCount = new AtomicInteger();
+
+
     public int getSubmittedTaskCount() {
         return submittedTaskCount.get();
+    }
+
+
+    /**
+     * 设置拒绝次数自增
+     */
+    public void incrementRejectCount() {
+        rejectCount.incrementAndGet();
+    }
+
+
+    /**
+     * 获取拒绝次数
+     */
+    public int getRejectCount() {
+        return rejectCount.get();
     }
 
     @Override
