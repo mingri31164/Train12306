@@ -105,6 +105,7 @@ public class TicketServiceImpl extends ServiceImpl<TicketMapper, TicketDO> imple
 
     @Override
     public TicketPageQueryRespDTO pageListTicketQueryV1(TicketPageQueryReqDTO requestParam) {
+        // 《======================加载城市数据========================》
         // 责任链模式 验证城市名称是否存在、不存在加载缓存以及出发日期不能小于当前日期等等
         ticketPageQueryAbstractChainContext.handler(TicketChainMarkEnum.TRAIN_QUERY_FILTER.name(), requestParam);
         StringRedisTemplate stringRedisTemplate = (StringRedisTemplate) distributedCache.getInstance();
@@ -133,6 +134,7 @@ public class TicketServiceImpl extends ServiceImpl<TicketMapper, TicketDO> imple
                 lock.unlock();
             }
         }
+        //《=======================查询列车站点信息===========================》
         List<TicketListDTO> seatResults = new ArrayList<>();
         String buildRegionTrainStationHashKey = String.format(REGION_TRAIN_STATION, stationDetails.get(0), stationDetails.get(1));
         Map<Object, Object> regionTrainStationAllMap = stringRedisTemplate.opsForHash().entries(buildRegionTrainStationHashKey);

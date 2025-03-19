@@ -17,7 +17,7 @@ public class EagerThreadPoolExecutor extends ThreadPoolExecutor {
                                    RejectedExecutionHandler handler) {
         super(corePoolSize, maximumPoolSize, keepAliveTime, unit, workQueue, handler);
 
-        //内部创建创建代理拒绝策略类
+        //内部创建代理拒绝策略类
         RejectedExecutionHandler rejectedExecutionHandler = (RejectedExecutionHandler) Proxy.newProxyInstance(
                 handler.getClass().getClassLoader(),
                 handler.getClass().getInterfaces(),

@@ -7,6 +7,7 @@ import java.util.Map;
 
 /**
  * 幂等上下文
+ * 如果用上下文，会有大量的参数需要在方法传参中声明以及传递
  */
 public final class IdempotentContext {
 

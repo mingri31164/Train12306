@@ -22,7 +22,8 @@ public final class IdempotentAspect {
         // 获取到方法上的幂等注解实际数据
         Idempotent idempotent = getIdempotent(joinPoint);
         // 通过幂等场景以及幂等类型，获取幂等执行处理器
-        IdempotentExecuteHandler instance = IdempotentExecuteHandlerFactory.getInstance(idempotent.scene(), idempotent.type());
+        IdempotentExecuteHandler instance = IdempotentExecuteHandlerFactory
+                .getInstance(idempotent.scene(), idempotent.type());
         Object resultObj;
         try {
             // 执行幂等处理逻辑
@@ -38,8 +39,10 @@ public final class IdempotentAspect {
              *    * 2. 消息处理成功了，该消息直接返回成功即可
              */
             if (!ex.getError()) {
+                // 如果 error 为 false，代表消息已经消费过了，不执行业务逻辑，将异常吞掉返回 RocketMQ 消费成功即可
                 return null;
             }
+            // 如果 error 为 true，代表需要抛异常让 RocketMQ 重试
             throw ex;
         } catch (Throwable ex) {
             // 客户端消费存在异常，需要删除幂等标识方便下次 RocketMQ 再次通过重试队列投递
