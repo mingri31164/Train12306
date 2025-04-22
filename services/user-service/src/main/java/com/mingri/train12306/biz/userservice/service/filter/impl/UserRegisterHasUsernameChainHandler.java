@@ -33,17 +33,16 @@ public final class UserRegisterHasUsernameChainHandler implements UserRegisterCr
     @Override
     public void handler(UserRegisterReqDTO requestParam) {
         String username = requestParam.getUsername();
+        // 布隆过滤器存在该用户名
         if (userRegisterCachePenetrationBloomFilter.contains(username)) {
-            // 布隆过滤器存在该用户名
-            StringRedisTemplate instance = (StringRedisTemplate) distributedCache.getInstance();
-
             // 判断数据库中是否存在该用户名
             QueryWrapper<UserDO> queryWrapper = new QueryWrapper<>();
             queryWrapper.eq("username", username);
 
             // 判断数据库中是否存在该用户名
             if (userMapper.exists(queryWrapper)) {
-                // 如果 Redis 中不存在该用户名，则抛出异常
+                StringRedisTemplate instance = (StringRedisTemplate) distributedCache.getInstance();
+                // 如果 Redis 中不存在该用户名，说明该用户名已被使用且尚未被注销
                 if (Boolean.FALSE.equals(instance.opsForSet().isMember(USER_REGISTER_REUSE_SHARDING + hashShardingIdx(username), username)))
                     throw new ClientException(UserRegisterErrorCodeEnum.HAS_USERNAME_NOTNULL);
             }

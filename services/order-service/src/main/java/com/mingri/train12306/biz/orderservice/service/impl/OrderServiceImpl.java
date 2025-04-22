@@ -155,7 +155,7 @@ public class OrderServiceImpl implements OrderService {
                     .orderSn(orderSn)
                     .trainPurchaseTicketResults(requestParam.getTicketOrderItems())
                     .build();
-            // 创建订单并支付后延时关闭订单消息怎么办？详情查看：https://nageoffer.com/12306/question
+            // 创建订单并支付后延时关闭订单消息怎么办？
             SendResult sendResult = delayCloseOrderSendProduce.sendMessage(delayCloseOrderEvent);
             if (!Objects.equals(sendResult.getSendStatus(), SendStatus.SEND_OK)) {
                 throw new ServiceException("投递延迟关闭订单消息队列失败");

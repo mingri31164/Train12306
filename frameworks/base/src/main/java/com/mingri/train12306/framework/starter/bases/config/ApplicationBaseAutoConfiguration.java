@@ -1,6 +1,5 @@
 package com.mingri.train12306.framework.starter.bases.config;
 
-
 import com.mingri.train12306.framework.starter.bases.ApplicationContextHolder;
 import com.mingri.train12306.framework.starter.bases.init.ApplicationContentPostProcessor;
 import com.mingri.train12306.framework.starter.bases.safa.FastJsonSafeMode;

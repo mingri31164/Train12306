@@ -8,7 +8,6 @@ import java.util.Map;
 
 /**
  * 抽象的验证座位实体类
-
  */
 public interface BitMapCheckSeat {
 

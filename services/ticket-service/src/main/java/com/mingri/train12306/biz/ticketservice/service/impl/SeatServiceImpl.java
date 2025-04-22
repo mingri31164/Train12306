@@ -27,7 +27,6 @@ import static com.mingri.train12306.biz.ticketservice.common.constant.RedisKeyCo
 
 /**
  * 座位接口层实现
-
  */
 @Service
 @RequiredArgsConstructor

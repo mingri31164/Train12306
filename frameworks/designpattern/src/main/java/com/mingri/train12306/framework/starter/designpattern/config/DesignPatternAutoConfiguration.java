@@ -5,6 +5,7 @@ import com.mingri.train12306.framework.starter.designpattern.chain.AbstractChain
 import com.mingri.train12306.framework.starter.designpattern.strategy.AbstractStrategyChoose;
 import org.springframework.boot.autoconfigure.ImportAutoConfiguration;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
 /**
  * 设计模式自动装配

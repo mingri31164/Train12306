@@ -4,7 +4,6 @@ import com.mingri.train12306.framework.starter.bases.Singleton;
 
 /**
  * 座位通过 BitMap 检测抽象工厂
-
  */
 public abstract class BitMapCheckSeatStatusFactory {
 

@@ -2,7 +2,6 @@ package com.mingri.train12306.framework.starter.bases.init;
 
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationListener;
@@ -13,7 +12,6 @@ import java.util.concurrent.atomic.AtomicBoolean;
  * 监听ApplicationReadyEvent事件，如果是第一次发生ApplicationReadyEvent，
  * 发布我们自定义的事件，表示Spring容器初始化完成
  */
-@Slf4j
 @RequiredArgsConstructor
 public class ApplicationContentPostProcessor implements ApplicationListener<ApplicationReadyEvent> {
 
@@ -35,7 +33,6 @@ public class ApplicationContentPostProcessor implements ApplicationListener<Appl
             return;
         }
 
-        log.info("Publishing ApplicationInitializingEvent...");
         applicationContext.publishEvent(new ApplicationInitializingEvent(this));
     }
 }

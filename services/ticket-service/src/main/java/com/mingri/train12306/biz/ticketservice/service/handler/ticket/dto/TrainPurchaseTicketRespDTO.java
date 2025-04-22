@@ -4,7 +4,6 @@ import lombok.Data;
 
 /**
  * 列车购票出参
-
  */
 @Data
 public class TrainPurchaseTicketRespDTO {

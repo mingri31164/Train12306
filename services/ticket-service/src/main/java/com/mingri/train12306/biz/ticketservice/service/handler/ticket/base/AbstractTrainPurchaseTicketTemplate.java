@@ -21,7 +21,6 @@ import static com.mingri.train12306.biz.ticketservice.common.constant.RedisKeyCo
 
 /**
  * 抽象高铁购票模板基础服务
-
  */
 public abstract class AbstractTrainPurchaseTicketTemplate implements IPurchaseTicket, CommandLineRunner, AbstractExecuteStrategy<SelectSeatDTO, List<TrainPurchaseTicketRespDTO>> {
 

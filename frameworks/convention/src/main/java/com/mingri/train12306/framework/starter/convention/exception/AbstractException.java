@@ -1,8 +1,8 @@
 package com.mingri.train12306.framework.starter.convention.exception;
 
 import com.mingri.train12306.framework.starter.convention.errorcode.IErrorCode;
-import lombok.Getter;
 import org.springframework.util.StringUtils;
+import lombok.Getter;
 
 import java.util.Optional;
 

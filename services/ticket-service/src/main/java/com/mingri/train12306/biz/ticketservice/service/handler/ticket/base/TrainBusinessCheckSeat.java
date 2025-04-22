@@ -11,7 +11,6 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * 高铁商务座验证座位
-
  */
 public class TrainBusinessCheckSeat implements TrainBitMapCheckSeat {
 

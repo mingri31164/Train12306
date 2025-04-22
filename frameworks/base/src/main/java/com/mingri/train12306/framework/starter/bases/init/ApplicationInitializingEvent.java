@@ -1,6 +1,5 @@
 package com.mingri.train12306.framework.starter.bases.init;
 
-
 import org.springframework.context.ApplicationEvent;
 
 /**

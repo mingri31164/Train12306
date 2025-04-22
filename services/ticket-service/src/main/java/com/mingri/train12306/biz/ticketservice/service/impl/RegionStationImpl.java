@@ -34,7 +34,6 @@ import static com.mingri.train12306.biz.ticketservice.common.constant.Train12306
 
 /**
  * 地区以及车站接口实现层
-
  */
 @Service
 @RequiredArgsConstructor

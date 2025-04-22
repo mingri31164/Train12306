@@ -25,7 +25,6 @@ import static com.mingri.train12306.biz.ticketservice.common.constant.RedisKeyCo
 import static com.mingri.train12306.biz.ticketservice.common.constant.RedisKeyConstant.TRAIN_CARRIAGE;
 /**
  * 列车车厢接口层实现
-
  */
 @Service
 @RequiredArgsConstructor

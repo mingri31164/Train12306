@@ -6,7 +6,6 @@ import com.mingri.train12306.framework.starter.designpattern.chain.AbstractChain
 
 /**
  * 列车车票退款过滤器
-
  */
 public interface TrainRefundTicketChainFilter<T extends RefundTicketReqDTO> extends AbstractChainHandler<RefundTicketReqDTO> {
 
