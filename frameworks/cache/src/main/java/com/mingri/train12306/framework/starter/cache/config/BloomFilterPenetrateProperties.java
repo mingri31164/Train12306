@@ -25,5 +25,5 @@ public class BloomFilterPenetrateProperties {
     /**
      * 预期错误概率
      */
-    private Double falseProbability = 0.03D;
+    private Double falseProbability = 0.02D;
 }
